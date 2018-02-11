@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+<nav>
+{% for bc in g.breadcrumbs %}
+  {% if bc.url %}
+    <a href='{{ bc.path }}'>{{ bc.name }}</a>
+  {% else %}
+    {{ bc.name }}
+  {% endif %}
+  {% if not loop.last%}&raquo;{% endif %}
+{% endfor %}
+</nav>
+{% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<p><strong>Task:</strong> {{ task.description }}</p>
+<p>Solutions:</p>
+<ul>
+{% for solution in solutions %}
+<li>{{ solution.solution }}</li>
+{% endfor %}
+{% include "new-solution.html" %}
+</ul>
+{% endblock %}

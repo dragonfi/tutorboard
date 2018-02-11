@@ -1,0 +1,44 @@
+body {
+    margin: 0.5em;
+    color: #586e75;
+}
+
+table, button, h2, input, .search-example {
+  margin: 0.5em;
+}
+
+table, td, th {
+    border: solid 1px #93a1a1;
+    border-collapse: collapse;
+    background-color: #fdf6e3;
+    padding-left: 0.2em;
+    padding-right: 0.5em;
+    clear: both;
+}
+
+a {
+  color: inherit;
+  font-style: bold;
+  text-decoration-line: underline;
+}
+
+.search-box {
+    display: block;
+    margin-bottom: 0.5em;
+    border: solid 1px #93a1a1;
+    border-radius: 0.2em;
+    background-color: #fdf6e3;
+    float: left;
+}
+
+.search-example {
+  display: block;
+  float: left;
+  font-family: monospace;
+  padding: 0.2em;
+  margin-left: 0.5em;
+}
+
+//table tr:nth-child(even) td {
+//    background-color: #eee8d5;
+//}
