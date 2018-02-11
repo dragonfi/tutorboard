@@ -1,5 +1,5 @@
-<form method="POST" action="{{ request.path }}">
-    {{ form.csrf_token }}
-    <p>{{ form.solution.label }}<br/>{{ form.solution }}</p>
-    <input type="submit" value="Go">
+<form method="POST" action="/tasks/{{task.id}}/solutions/new">
+  <p><label>New Solution:</label>
+  </br><textarea name="description" maxlength="20"></textarea></p>
+  <input type="submit" value="Submit">
 </form>

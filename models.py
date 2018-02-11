@@ -15,8 +15,8 @@ class Task(db.Model):
 class Solution(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'), nullable=False)
-    solution = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
         return 'Solution({}, {}, "{}...")'.format(
-            self.id, task_id, self.solution[:10])
+            self.id, task_id, self.description[:10])

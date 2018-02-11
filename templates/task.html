@@ -3,8 +3,8 @@
 <p><strong>Task:</strong> {{ task.description }}</p>
 <p>Solutions:</p>
 <ul>
-{% for solution in solutions %}
-<li>{{ solution.solution }}</li>
+{% for solution in task.solutions %}
+<li>{{ solution.description }}</li>
 {% endfor %}
 {% include "new-solution.html" %}
 </ul>

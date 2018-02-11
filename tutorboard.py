@@ -1,6 +1,5 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 from models import db, Task, Solution
-from forms import NewTaskForm, NewSolutionForm
 from breadcrumbs import breadcrumbs
 
 app = Flask(__name__)
@@ -11,7 +10,6 @@ db.init_app(app)
 
 
 @app.route('/')
-@app.route('/task')
 @app.route('/tasks')
 def hello():
     breadcrumbs(['/', 'Tutorboard'], 'Tasks')
@@ -19,29 +17,29 @@ def hello():
     return render_template('tasks.html', tasks=tasks)
 
 
-@app.route('/task/<int:task_id>')
+@app.route('/tasks/<int:task_id>')
 def task(task_id):
     breadcrumbs(['/', 'Tutorboard'], ['/tasks', 'Tasks'], task_id)
-    form = NewSolutionForm()
-    if form.validate_on_submit():
-        task = Task(description=form.description.data)
-        db.session.add(task)
-        db.session.commit()
-        return redirect('/task/{}'.format(task.id))
     task = Task.query.get(task_id)
     return render_template('task.html', task=task)
 
 
-@app.route('/task/new', methods=['GET', 'POST'])
+@app.route('/tasks/<int:task_id>/solutions/new', methods=['POST'])
+def add_solution(task_id):
+    description = request.form['description']
+    solution = Solution(task_id=task_id, description=description)
+    db.session.add(solution)
+    db.session.commit()
+    return redirect('/tasks/{}'.format(task_id))
+
+
+@app.route('/tasks/new', methods=['POST'])
 def add_task():
-    breadcrumbs(['/', 'Tutorboard'], ['/tasks', 'Tasks'], 'New')
-    form = NewTaskForm()
-    if form.validate_on_submit():
-        task = Task(description=form.description.data)
-        db.session.add(task)
-        db.session.commit()
-        return redirect('/task/{}'.format(task.id))
-    return render_template('new-task.html', form=form)
+    description = request.form['description']
+    task = Task(description=description)
+    db.session.add(task)
+    db.session.commit()
+    return redirect('/tasks')
 
 
 if __name__ == '__main__':

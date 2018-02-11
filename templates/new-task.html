@@ -1,8 +1,5 @@
-{% extends 'base.html' %}
-{% block content %}
-<form method="POST" action="{{ request.path }}">
-    {{ form.csrf_token }}
-    <p>{{ form.description.label }}<br/>{{ form.description }}</p>
-    <input type="submit" value="Go">
+<form method="POST" action="/tasks/new">
+  <p><label>New Task:</label>
+  </br><textarea name="description" maxlength="20"></textarea></p>
+  <input type="submit" value="Submit">
 </form>
-{% endblock %}
