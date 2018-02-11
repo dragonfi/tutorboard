@@ -1,11 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'layout/base.html' %}
 {% block content %}
-<p><strong>Task:</strong> {{ task.description }}</p>
-<p>Solutions:</p>
+<h2>Task description:</h2>
+<p class="task-description">{{ task.description }}</p>
+<h2>Solutions:</h2>
 <ul>
 {% for solution in task.solutions %}
-<li>{{ solution.description }}</li>
+<li><pre>{{ solution.description }}</pre></li>
 {% endfor %}
-{% include "new-solution.html" %}
 </ul>
+{% include "layout/new-solution.html" %}
 {% endblock %}

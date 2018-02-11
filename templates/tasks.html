@@ -1,14 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'layout/base.html' %}
 {% block content %}
+<h2>All tasks:</h2>
 <table>
-<tr><th>id</th><th>description</th><th>solutions</th></tr>
+<tr><th>Task description</th><th>Solutions</th></tr>
 {% for task in tasks %}
 <tr>
-  <td><a href="/tasks/{{ task.id }}">{{ task.id }}</a></td>
   <td><a href="/tasks/{{ task.id }}">{{ task.description }}</a></td>
   <td>{{ task.solutions | length }}</td>
 </tr>
 {% endfor %}
 </table>
-{% include "new-task.html" %}
+{% include "layout/new-task.html" %}
 {% endblock %}
